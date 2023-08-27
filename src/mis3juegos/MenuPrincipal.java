@@ -7,57 +7,79 @@ import org.jvnet.substance.SubstanceLookAndFeel;
 
 
 public class MenuPrincipal extends JFrame implements ActionListener{
+
     private JMenuBar Menu;
-    public JMenu opcion1,opcion2;
-    public JMenuItem DE,PP,sopa,opcion5,manual,acerca,sal;
+    public JMenu tabJuegos,tabAyuda;
+    public JMenuItem itemDE, itemPipePlayer, itemSopa, opcion5, itemManual, itemAbout, itemExit;
+    
     public MenuPrincipal(){
-   super("ETOYS,Mis 3 Juegos Menu Principal ");
+
+      super("ETOYS,Mis 3 Juegos Menu Principal ");
    
-   setSize(400,400);
-   setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   Menu = new JMenuBar();
-   setLayout(null);
-   //Menu= new JMenuBar();// principal
-   setJMenuBar(Menu);
-  
-   
-   opcion1= new JMenu("Juego");
-   Menu.add(opcion1);
-      DE= new JMenuItem("Damas Espanolas");// agregamos opcion2 dentro de opcion1 y asi es con todas
-      opcion1.add(DE);
-      DE.addActionListener(this);// Action listener vigila si se recibe alguna respuesta de Damas espanolas
-      PP= new JMenuItem("PipePlayer");
-      opcion1.add(PP);
-      PP.addActionListener(this);
-      sopa= new JMenuItem("Sopa de Letras");
-      opcion1.add(sopa);
-      sopa.addActionListener(this);
-      sal= new JMenuItem("Salir");
-      opcion1.add(sal);
-      sal.addActionListener(this);
-   opcion2= new JMenu("Ayuda");
-   Menu.add(opcion2);
-   manual= new JMenuItem("Manual de usuario");
-   opcion2.add(manual);
-   acerca= new JMenuItem("Acerca de");
-   opcion2.add(acerca);
+      setSize(400,400);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      Menu = new JMenuBar();
+      setLayout(null);
+      setJMenuBar(Menu);
+      
+      this.populateJMenuBar(Menu);
     
     }
-    public void actionPerformed(ActionEvent e){
-    Container f=this.getContentPane();
-        if (e.getSource()==DE) {
-         DamasEspanolas damas= new DamasEspanolas();
-         damas.setVisible(true);
-        } else if(e.getSource()==sal){
-          System.exit(0);
+
+
+    private void populateJMenuBar(JMenuBar mainMenu){
+      
+      tabJuegos= new JMenu("Juego");
+      
+      itemDE= new JMenuItem("Damas Espanolas");// agregamos opcion2 dentro de opcion1 y asi es con todas
+      itemDE.addActionListener(this);
+      tabJuegos.add(itemDE);
+      
+      itemPipePlayer= new JMenuItem("PipePlayer");
+      itemPipePlayer.addActionListener(this);
+      tabJuegos.add(itemPipePlayer);  
+
+      itemSopa= new JMenuItem("Sopa de Letras");
+      itemSopa.addActionListener(this);
+      tabJuegos.add(itemSopa);
         
-        } else if(e.getSource()==sopa){
-         SubstanceLookAndFeel.setSkin("false");
-      SubstanceLookAndFeel.getCurrentDecorationPainter();
-         Sopadeletras sopita= new Sopadeletras();
-         sopita.setVisible(true);
-       
-        }
+      itemExit= new JMenuItem("Salir");
+      itemExit.addActionListener(this);
+      tabJuegos.add(itemExit);
+      
+      tabAyuda= new JMenu("Ayuda");
+      
+      itemManual= new JMenuItem("Manual de usuario");
+      tabAyuda.add(itemManual);
+
+      itemAbout= new JMenuItem("Acerca de");
+      tabAyuda.add(itemAbout);
+
+      mainMenu.add(tabJuegos);
+      mainMenu.add(tabAyuda);
+          
+    }
+
+    public void actionPerformed(ActionEvent e){
+      
+      Container f=this.getContentPane();
+
+      if (e.getSource() == itemDE) {
+
+       DamasEspanolas damas = new DamasEspanolas();
+       damas.setVisible(true);
+
+      } else if(e.getSource() == itemExit){
+
+        System.exit(0);
+      
+      } else if(e.getSource() == itemSopa){
+        //SubstanceLookAndFeel.setSkin("false");
+        //SubstanceLookAndFeel.getCurrentDecorationPainter();
+        Sopadeletras sopita = new Sopadeletras();
+        sopita.setVisible(true);
+      }
  
     
     }
