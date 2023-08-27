@@ -75,8 +75,8 @@ public class MenuPrincipal extends JFrame implements ActionListener{
         System.exit(0);
       
       } else if(e.getSource() == itemSopa){
-        //SubstanceLookAndFeel.setSkin("false");
-        //SubstanceLookAndFeel.getCurrentDecorationPainter();
+        SubstanceLookAndFeel.setSkin("false");
+        SubstanceLookAndFeel.getCurrentDecorationPainter();
         Sopadeletras sopita = new Sopadeletras();
         sopita.setVisible(true);
       }
